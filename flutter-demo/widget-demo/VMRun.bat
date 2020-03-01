@@ -1,0 +1,1 @@
+E:\SDK\emulator\emulator.exe -netdelay none -netspeed full -avd Pixel_3_XL_API_29
