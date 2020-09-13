@@ -74,6 +74,41 @@ class TruthDoer extends Doer {
   void doSth() {}
 }
 
+// 隐式接口:
+// 每个类均隐式定义了接口 包含该类所有实例成员及其实现的接口
+// 构造函数不会包含在接口中
+class Person {
+  // 包含在接口里，但只在当前库中可见。
+  final _name;
+
+  // 不包含在接口里，因为这是一个构造函数。
+  Person(this._name);
+
+  // 包含在接口里。
+  String greet(String who) => 'Hello, $who. I am $_name.';
+}
+
+// person 接口的实现。
+class Impostor implements Person {
+  get _name => '';
+
+  String greet(String who) => 'Hi $who. Do you know who I am?';
+}
+
+// 扩展子类  super.xxx引用父类
+
+// 使用@override 重写实例方法与存取器
+
+class A {
+  // 如果不重写 noSuchMethod，访问
+  // 不存在的实例变量时会导致 NoSuchMethodError 错误。
+  @override
+  void noSuchMethod(Invocation invocation) {
+    print('You tried to use a non-existent member: ' +
+        '${invocation.memberName}');
+  }
+}
+
 void main() {
   Point p = Point(1, 2);
   // 防止为null

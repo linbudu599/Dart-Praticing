@@ -1,4 +1,28 @@
+// 懒加载
+import "class.dart" deferred as classPackage;
+
 void main() {
+  try {
+    Future greet() async {
+      await classPackage.loadLibrary();
+      classPackage.main();
+    }
+  } catch (e) {}
+
+  Future<String> lookup(String name) async => name;
+  // Future<void> ...
+
+  // List<Future<String> Function()> async_func_list = [lookup, lookup, lookup];
+
+  // List<String> queries = ["1","2","3"]
+
+  // Future<List<String>> invoke_func_list() async {
+  //   List<String> res = [];
+  //   await for (var item in queries) {
+  //     String tmp = lookup(func)
+  //   }
+  // }
+
   // 类型编程关键字
 
   // as is is!
