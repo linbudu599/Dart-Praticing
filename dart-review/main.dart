@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import "basic.dart";
+import "stateless_group.dart";
 
 void main() {
-  runApp(MyApp());
+  runApp(StatelessWidgetGroup());
 }
 
 class MyApp extends StatelessWidget {
