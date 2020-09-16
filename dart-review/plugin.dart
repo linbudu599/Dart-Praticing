@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_color_plugin/flutter_color_plugin.dart';
+import 'package:flutter_color_plugin/flutter_color_plugin.dart';
 
 class ColorPlugin extends StatelessWidget {
   const ColorPlugin({Key key}) : super(key: key);
@@ -9,7 +9,7 @@ class ColorPlugin extends StatelessWidget {
     return Container(
       child: Text(
         "芜湖",
-        // style: TextStyle(color: ColorUtil.color("#ff8899")),
+        style: TextStyle(color: ColorUtil.color("#ff8899")),
       ),
     );
   }

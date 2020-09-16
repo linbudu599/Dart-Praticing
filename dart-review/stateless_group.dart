@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import "components/BackBtn.dart";
 
-class StatelessWidgetGroup extends StatelessWidget {
+class StatelessGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle textStyleCommon = TextStyle(fontSize: 24);
@@ -11,7 +12,13 @@ class StatelessWidgetGroup extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
-        appBar: AppBar(title: Text("Stateless Widget 基础组件")),
+        appBar: AppBar(
+            title: Text("Stateless Widget 基础组件"),
+            leading: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(Icons.arrow_back))),
         body: Container(
           decoration: BoxDecoration(color: Colors.white),
           alignment: Alignment.center,
