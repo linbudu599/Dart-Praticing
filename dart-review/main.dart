@@ -5,6 +5,8 @@ import "layout/layout.dart";
 import "plugin.dart";
 import "gesture.dart";
 import "launcher.dart";
+import "life_cycle.dart";
+import "app_flutter.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -31,7 +33,9 @@ class MyApp extends StatelessWidget {
         "layout": (BuildContext context) => Layout(),
         "gesture": (BuildContext context) => Gesture(),
         "plugin": (BuildContext context) => ColorPlugin(),
-        "launcher": (BuildContext context) => URLLauncher()
+        "launcher": (BuildContext context) => URLLauncher(),
+        "lifecycle": (BuildContext context) => LifeCycle(),
+        "app_lifecycle": (BuildContext context) => AppLifecycle()
       },
     );
   }
@@ -64,6 +68,8 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         _item("Gesture Widget", Gesture(), "gesture"),
         _item("Plugin Widget", ColorPlugin(), "plugin"),
         _item("Launcher Widget", URLLauncher(), "launcher"),
+        _item("LifeCycle Widget", LifeCycle(), "life cycle"),
+        _item("App LifeCycle Widget", AppLifecycle(), "app life cycle"),
         Image(
             width: 100,
             height: 100,
