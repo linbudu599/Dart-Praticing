@@ -7,25 +7,50 @@ import "gesture.dart";
 import "launcher.dart";
 import "life_cycle.dart";
 import "app_flutter.dart";
+import "app/camera.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
-  runApp(MyApp());
+  runApp(DynamicTheme());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class DynamicTheme extends StatefulWidget {
+  DynamicTheme({Key key}) : super(key: key);
+
+  @override
+  _DynamicThemeState createState() => _DynamicThemeState();
+}
+
+class _DynamicThemeState extends State<DynamicTheme> {
+  Brightness bright = Brightness.light;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo11',
       theme: ThemeData(
+        // fontFamily: "FiraCode",
         primarySwatch: Colors.blue,
+        brightness: bright,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
         appBar: AppBar(title: Text("芜湖!")),
-        body: RouterNavigator(),
+        body: Column(children: <Widget>[
+          RaisedButton(
+              child: Text(
+                "toggle to ${bright == Brightness.light ? 'night' : 'day'} mode",
+                style: TextStyle(fontFamily: "FiraCode"),
+              ),
+              onPressed: () {
+                setState(() {
+                  bright = bright == Brightness.light
+                      ? Brightness.dark
+                      : Brightness.light;
+                });
+              }),
+          RouterNavigator()
+        ]),
       ),
       routes: <String, WidgetBuilder>{
         "stateless": (BuildContext context) => StatelessGroup(),
@@ -35,7 +60,8 @@ class MyApp extends StatelessWidget {
         "plugin": (BuildContext context) => ColorPlugin(),
         "launcher": (BuildContext context) => URLLauncher(),
         "lifecycle": (BuildContext context) => LifeCycle(),
-        "app_lifecycle": (BuildContext context) => AppLifecycle()
+        "app_lifecycle": (BuildContext context) => AppLifecycle(),
+        "camera_app": (BuildContext context) => CameraApp()
       },
     );
   }
@@ -70,6 +96,7 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         _item("Launcher Widget", URLLauncher(), "launcher"),
         _item("LifeCycle Widget", LifeCycle(), "life cycle"),
         _item("App LifeCycle Widget", AppLifecycle(), "app life cycle"),
+        _item("Camera App", CameraApp(), "camera_app"),
         Image(
             width: 100,
             height: 100,
