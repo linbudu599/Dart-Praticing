@@ -11,6 +11,7 @@ import "app/camera.dart";
 import "route-param-receiver.dart";
 import "data-return-screen.dart";
 import "data-send-screen.dart";
+import "network/network.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -69,6 +70,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
             RouterParamReceiver(),
         "data_return_screen": (BuildContext context) => ReturnDataHomeScreen(),
         "data_send_screen": (BuildContext context) => DataSend2NewScreen(),
+        "network_demo": (BuildContext context) => NetworkDemo(),
       },
     );
   }
@@ -113,6 +115,7 @@ class _RouterNavigatorState extends State<RouterNavigator> {
             "data_return_screen"),
         _item("Data Send To New Screen", DataSend2NewScreen(),
             "data_send_screen"),
+        _item("Network Demo", NetworkDemo(), "network_demo"),
         Image(
             width: 100,
             height: 100,
