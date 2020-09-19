@@ -13,6 +13,7 @@ import "data-return-screen.dart";
 import "data-send-screen.dart";
 import "network/network.dart";
 import 'app/data-persistence.dart';
+import "form.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -72,6 +73,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
         "data_return_screen": (BuildContext context) => ReturnDataHomeScreen(),
         "data_send_screen": (BuildContext context) => DataSend2NewScreen(),
         "network_demo": (BuildContext context) => NetworkDemo(),
+        "form": (BuildContext context) => CustomForm()
       },
     );
   }
@@ -107,16 +109,17 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         // _item("LifeCycle Widget", LifeCycle(), "life cycle"),
         // _item("App LifeCycle Widget", AppLifecycle(), "app life cycle"),
         // _item("Camera App", CameraApp(), "czamera_app"),
-        _item(
-            "Route Param Receiver",
-            RouterParamReceiver(),
-            RouterParamReceiver.routeName,
-            ScreenArgs("SEND TITLE", "SEND MESSAGE")),
-        _item("Data Return To Home Screen", ReturnDataHomeScreen(),
-            "data_return_screen"),
-        _item("Data Send To New Screen", DataSend2NewScreen(),
-            "data_send_screen"),
-        _item("Network Demo", NetworkDemo(), "network_demo"),
+        // _item(
+        //     "Route Param Receiver",
+        //     RouterParamReceiver(),
+        //     RouterParamReceiver.routeName,
+        //     ScreenArgs("SEND TITLE", "SEND MESSAGE")),
+        // _item("Data Return To Home Screen", ReturnDataHomeScreen(),
+        //     "data_return_screen"),
+        // _item("Data Send To New Screen", DataSend2NewScreen(),
+        //     "data_send_screen"),
+        // _item("Network Demo", NetworkDemo(), "network_demo"),
+        _item("Form Demo", CustomForm(), "form"),
         Image(
             width: 100,
             height: 100,
