@@ -12,6 +12,7 @@ import "route-param-receiver.dart";
 import "data-return-screen.dart";
 import "data-send-screen.dart";
 import "network/network.dart";
+import 'app/data-persistence.dart';
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -105,7 +106,7 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         // _item("Launcher Widget", URLLauncher(), "launcher"),
         // _item("LifeCycle Widget", LifeCycle(), "life cycle"),
         // _item("App LifeCycle Widget", AppLifecycle(), "app life cycle"),
-        // _item("Camera App", CameraApp(), "camera_app"),
+        // _item("Camera App", CameraApp(), "czamera_app"),
         _item(
             "Route Param Receiver",
             RouterParamReceiver(),
