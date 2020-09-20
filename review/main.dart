@@ -14,6 +14,8 @@ import "data-send-screen.dart";
 import "network/network.dart";
 import 'app/data-persistence.dart';
 import "form.dart";
+import "image.dart";
+import "navigation_widget.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -59,8 +61,8 @@ class _DynamicThemeState extends State<DynamicTheme> {
         ]),
       ),
       routes: <String, WidgetBuilder>{
-        // "stateless": (BuildContext context) => StatelessGroup(),
-        // "stateful": (BuildContext context) => StatefulGroup(),
+        "stateless": (BuildContext context) => StatelessGroup(),
+        "stateful": (BuildContext context) => StatefulGroup(),
         "layout": (BuildContext context) => Layout(),
         "gesture": (BuildContext context) => Gesture(),
         "plugin": (BuildContext context) => ColorPlugin(),
@@ -73,7 +75,9 @@ class _DynamicThemeState extends State<DynamicTheme> {
         "data_return_screen": (BuildContext context) => ReturnDataHomeScreen(),
         "data_send_screen": (BuildContext context) => DataSend2NewScreen(),
         "network_demo": (BuildContext context) => NetworkDemo(),
-        "form": (BuildContext context) => CustomForm()
+        "form": (BuildContext context) => CustomForm(),
+        "image": (BuildContext context) => ImageDemo(),
+        "navigation_widget": (BuildContext context) => TopNavigationView()
       },
     );
   }
@@ -119,7 +123,12 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         // _item("Data Send To New Screen", DataSend2NewScreen(),
         //     "data_send_screen"),
         // _item("Network Demo", NetworkDemo(), "network_demo"),
-        _item("Form Demo", CustomForm(), "form"),
+        // _item("Form Demo", CustomForm(), "form"),
+        _item("Image Demo", ImageDemo(), "image"),
+        _item("Navigation Demo", TopNavigationView(), "navigation_widget"),
+        // _item("Navigation Demo", BotNavigationView(), "navigation_widget"),
+        // _item("Navigation Demo", SideNavigationView(), "navigation_widget"),
+
         Image(
             width: 100,
             height: 100,
