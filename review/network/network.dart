@@ -5,6 +5,7 @@ import 'dart:io';
 import "package:flutter/material.dart";
 import "package:http/http.dart" as http;
 
+// 将http.response  转换为 Dart Object
 class Album {
   final int userId;
   final int id;
@@ -34,6 +35,8 @@ class _NetworkDemoState extends State<NetworkDemo> {
   @override
   void initState() {
     super.initState();
+    // 这里不需要await吗?
+    // 懂了懂了
     futureAlbum = _fetch();
   }
 
@@ -47,10 +50,17 @@ class _NetworkDemoState extends State<NetworkDemo> {
           Container(
               width: 300,
               height: 300,
+              // FutureBuilder: 结合异步操作与异步UI更新
               child: FutureBuilder(
+                  // 当前连接的异步操作
                   future: futureAlbum,
                   builder:
                       (BuildContext context, AsyncSnapshot<Album> snapshot) {
+                    // snapshot返回Widget
+                    // snapshot.connectionState
+                    // none active dobe waiting
+                    // snapshot.data 最新数据
+                    // snapshot.error
                     if (snapshot.hasData) {
                       return Text(snapshot.data.title);
                     } else if (snapshot.hasError) {

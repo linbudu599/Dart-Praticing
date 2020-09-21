@@ -16,6 +16,7 @@ import 'app/data-persistence.dart';
 import "form.dart";
 import "image.dart";
 import "navigation_widget.dart";
+import "app/shared_prefer.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -77,7 +78,8 @@ class _DynamicThemeState extends State<DynamicTheme> {
         "network_demo": (BuildContext context) => NetworkDemo(),
         "form": (BuildContext context) => CustomForm(),
         "image": (BuildContext context) => ImageDemo(),
-        "navigation_widget": (BuildContext context) => TopNavigationView()
+        "navigation_widget": (BuildContext context) => TopNavigationView(),
+        "shared_prefs": (BuildContext context) => SharedPreferencesDemo(),
       },
     );
   }
@@ -124,10 +126,11 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         //     "data_send_screen"),
         // _item("Network Demo", NetworkDemo(), "network_demo"),
         // _item("Form Demo", CustomForm(), "form"),
-        _item("Image Demo", ImageDemo(), "image"),
-        _item("Navigation Demo", TopNavigationView(), "navigation_widget"),
+        // _item("Image Demo", ImageDemo(), "image"),
+        // _item("Navigation Demo", TopNavigationView(), "navigation_widget"),
         // _item("Navigation Demo", BotNavigationView(), "navigation_widget"),
         // _item("Navigation Demo", SideNavigationView(), "navigation_widget"),
+        _item("Shared_Pref Demo", SharedPreferencesDemo(), "shared_prefs"),
 
         Image(
             width: 100,
