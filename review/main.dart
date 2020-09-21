@@ -17,6 +17,8 @@ import "form.dart";
 import "image.dart";
 import "navigation_widget.dart";
 import "app/shared_prefer.dart";
+import "list/list.dart";
+import "list/list_refresh.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -80,6 +82,8 @@ class _DynamicThemeState extends State<DynamicTheme> {
         "image": (BuildContext context) => ImageDemo(),
         "navigation_widget": (BuildContext context) => TopNavigationView(),
         "shared_prefs": (BuildContext context) => SharedPreferencesDemo(),
+        "list": (BuildContext context) => ListDemo(),
+        "refresh_list": (BuildContext context) => RefreshList(),
       },
     );
   }
@@ -130,7 +134,9 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         // _item("Navigation Demo", TopNavigationView(), "navigation_widget"),
         // _item("Navigation Demo", BotNavigationView(), "navigation_widget"),
         // _item("Navigation Demo", SideNavigationView(), "navigation_widget"),
-        _item("Shared_Pref Demo", SharedPreferencesDemo(), "shared_prefs"),
+        // _item("Shared_Pref Demo", SharedPreferencesDemo(), "shared_prefs"),
+        // _item("List Demo", ListDemo(), "list"),
+        _item("Refresh List Demo", RefreshList(), "refresh_list"),
 
         Image(
             width: 100,
