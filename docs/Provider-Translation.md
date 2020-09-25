@@ -1,4 +1,4 @@
-# Provider 中文文档翻译
+# Provider
 
 [InheritedWidget](https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html) 组件的上层封装， 使其更易用， 更易复用。
 

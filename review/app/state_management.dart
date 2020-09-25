@@ -118,46 +118,46 @@ class HomePage extends StatelessWidget {
                       );
                     },
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 50),
-                  ),
-                  Text("Huge Counter Cousumer"),
+                  // Padding(
+                  //   padding: EdgeInsets.only(top: 50),
+                  // ),
+                  // Text("Huge Counter Cousumer"),
 
-                  Consumer<HugeCounter>(
-                    builder: (ctx, hugeCounter, child) {
-                      return Column(children: <Widget>[
-                        Text("Huge Counter: ${hugeCounter.hugeCount}",
-                            style: TextStyle(fontSize: 18))
-                      ]);
-                    },
-                  ),
-                  Selector<HugeCounter, HugeCounter>(
-                      selector: (ctx, provider) => provider,
-                      shouldRebuild: (pre, next) => false,
-                      builder: (ctx, hugeCounter, child) {
-                        return Column(children: <Widget>[
-                          RaisedButton(
-                              onPressed: () {
-                                hugeCounter.incrementByTimes();
-                              },
-                              child: Text("Increase By 2 Times")),
-                          RaisedButton(
-                              onPressed: () {
-                                hugeCounter.incrementByTimes(times: 3);
-                              },
-                              child: Text("Increase By 3 Times")),
-                          RaisedButton(
-                              onPressed: () {
-                                hugeCounter.decrementByTimes(times: 10);
-                              },
-                              child: Text("Decrease By 10 Times")),
-                          RaisedButton(
-                              onPressed: () {
-                                hugeCounter.decrementByTimes();
-                              },
-                              child: Text("Decrease By 2 Times")),
-                        ]);
-                      })
+                  // Consumer<HugeCounter>(
+                  //   builder: (ctx, hugeCounter, child) {
+                  //     return Column(children: <Widget>[
+                  //       Text("Huge Counter: ${hugeCounter.hugeCount}",
+                  //           style: TextStyle(fontSize: 18))
+                  //     ]);
+                  //   },
+                  // ),
+                  // Selector<HugeCounter, HugeCounter>(
+                  //     selector: (ctx, provider) => provider,
+                  //     shouldRebuild: (pre, next) => false,
+                  //     builder: (ctx, hugeCounter, child) {
+                  //       return Column(children: <Widget>[
+                  //         RaisedButton(
+                  //             onPressed: () {
+                  //               hugeCounter.incrementByTimes();
+                  //             },
+                  //             child: Text("Increase By 2 Times")),
+                  //         RaisedButton(
+                  //             onPressed: () {
+                  //               hugeCounter.incrementByTimes(times: 3);
+                  //             },
+                  //             child: Text("Increase By 3 Times")),
+                  //         RaisedButton(
+                  //             onPressed: () {
+                  //               hugeCounter.decrementByTimes(times: 10);
+                  //             },
+                  //             child: Text("Decrease By 10 Times")),
+                  //         RaisedButton(
+                  //             onPressed: () {
+                  //               hugeCounter.decrementByTimes();
+                  //             },
+                  //             child: Text("Decrease By 2 Times")),
+                  //       ]);
+                  //     })
                 ],
               ),
             ),
