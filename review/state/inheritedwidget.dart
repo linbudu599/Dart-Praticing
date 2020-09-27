@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(InheritedWidgetContainer());
@@ -10,6 +9,11 @@ class Counter {
   const Counter(this.count);
 }
 
+// 用于共享的上下文
+// 内部值更新时会重新构建
+// 这个上下文会在实际使用时才被初始化
+// 跟随指定类型的父级InheritedWidget
+// 实现局部Widget更新
 class SharedContext extends InheritedWidget {
   final Counter counter;
 
@@ -21,15 +25,24 @@ class SharedContext extends InheritedWidget {
       @required this.counter,
       @required this.increment,
       @required this.decrement,
+      // 缓存child
       @required Widget child})
       : super(key: key, child: child);
 
   static SharedContext of(BuildContext context) {
+    // 该方法用于找到最近的上下文
     return context.dependOnInheritedWidgetOfExactType<SharedContext>();
+  }
+
+  static SharedContext read(BuildContext context) {
+    return context
+        .getElementForInheritedWidgetOfExactType<SharedContext>()
+        .widget;
   }
 
   @override
   bool updateShouldNotify(SharedContext oldContext) {
+    // 判断是否触发子组件的depsChange事件
     return true;
   }
 }
@@ -88,6 +101,7 @@ class ValueWidget extends StatefulWidget {
 }
 
 class _ValueWidgetState extends State<ValueWidget> {
+  // 通常在这里去优化 避免执行开销较大的动作
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -107,6 +121,7 @@ class _ValueWidgetState extends State<ValueWidget> {
       padding: EdgeInsets.all(15),
       child: Text(
         "count: ${counter.count}",
+        // "Unrelated",
         style: Theme.of(context).textTheme.headline3,
       ),
     );
@@ -125,7 +140,7 @@ class _InheritedWidgetContainerState extends State<InheritedWidgetContainer> {
   Counter counter;
 
   void _initialization() {
-    counter = new Counter(0);
+    counter = Counter(0);
   }
 
   @override
@@ -136,13 +151,13 @@ class _InheritedWidgetContainerState extends State<InheritedWidgetContainer> {
 
   void _increment() {
     setState(() {
-      counter = new Counter(counter.count + 1);
+      counter = Counter(counter.count + 1);
     });
   }
 
   void _decrement() {
     setState(() {
-      counter = new Counter(counter.count - 1);
+      counter = Counter(counter.count - 1);
     });
   }
 
@@ -162,10 +177,9 @@ class _InheritedWidgetContainerState extends State<InheritedWidgetContainer> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                IncreWidget(),
+                const IncreWidget(),
                 ValueWidget(),
-                DecreWidget(),
-                // Text(counter.count.toString()),
+                const DecreWidget(),
               ],
             ),
           )),
