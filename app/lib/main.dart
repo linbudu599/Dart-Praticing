@@ -19,6 +19,7 @@ import "navigation_widget.dart";
 import "app/shared_prefer.dart";
 import "list/list.dart";
 import "list/list_refresh.dart";
+import "package:flutter_app/components/Button/Button.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -46,44 +47,44 @@ class _DynamicThemeState extends State<DynamicTheme> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
-        appBar: AppBar(title: Text("芜湖!")),
-        body: Column(children: <Widget>[
-          RaisedButton(
-              child: Text(
-                "toggle to ${bright == Brightness.light ? 'night' : 'day'} mode",
-                style: TextStyle(fontFamily: "FiraCode"),
-              ),
-              onPressed: () {
-                setState(() {
-                  bright = bright == Brightness.light
-                      ? Brightness.dark
-                      : Brightness.light;
-                });
-              }),
-          RouterNavigator()
-        ]),
-      ),
+          appBar: AppBar(title: Text("芜湖!")),
+          body:
+              // RaisedButton(
+              //     child: Text(
+              //       "toggle to ${bright == Brightness.light ? 'night' : 'day'} mode",
+              //       style: TextStyle(fontFamily: "FiraCode"),
+              //     ),
+              //     onPressed: () {
+              //       setState(() {
+              //         bright = bright == Brightness.light
+              //             ? Brightness.dark
+              //             : Brightness.light;
+              //       });
+              //     }),
+
+              SingleChildScrollView(child: RouterNavigator())),
       routes: <String, WidgetBuilder>{
-        "stateless": (BuildContext context) => StatelessGroup(),
-        "stateful": (BuildContext context) => StatefulGroup(),
-        "layout": (BuildContext context) => Layout(),
-        "gesture": (BuildContext context) => Gesture(),
-        "plugin": (BuildContext context) => ColorPlugin(),
-        "launcher": (BuildContext context) => URLLauncher(),
-        "lifecycle": (BuildContext context) => LifeCycle(),
-        "app_lifecycle": (BuildContext context) => AppLifecycle(),
-        "camera_app": (BuildContext context) => CameraApp(),
-        RouterParamReceiver.routeName: (BuildContext context) =>
-            RouterParamReceiver(),
-        "data_return_screen": (BuildContext context) => ReturnDataHomeScreen(),
-        "data_send_screen": (BuildContext context) => DataSend2NewScreen(),
-        "network_demo": (BuildContext context) => NetworkDemo(),
-        "form": (BuildContext context) => CustomForm(),
-        "image": (BuildContext context) => ImageDemo(),
-        "navigation_widget": (BuildContext context) => TopNavigationView(),
-        "shared_prefs": (BuildContext context) => SharedPreferencesDemo(),
-        "list": (BuildContext context) => ListDemo(),
-        "refresh_list": (BuildContext context) => RefreshList(),
+        // "stateless": (BuildContext context) => StatelessGroup(),
+        // "stateful": (BuildContext context) => StatefulGroup(),
+        // "layout": (BuildContext context) => Layout(),
+        // "gesture": (BuildContext context) => Gesture(),
+        // "plugin": (BuildContext context) => ColorPlugin(),
+        // "launcher": (BuildContext context) => URLLauncher(),
+        // "lifecycle": (BuildContext context) => LifeCycle(),
+        // "app_lifecycle": (BuildContext context) => AppLifecycle(),
+        // "camera_app": (BuildContext context) => CameraApp(),
+        // RouterParamReceiver.routeName: (BuildContext context) =>
+        //     RouterParamReceiver(),
+        // "data_return_screen": (BuildContext context) => ReturnDataHomeScreen(),
+        // "data_send_screen": (BuildContext context) => DataSend2NewScreen(),
+        // "network_demo": (BuildContext context) => NetworkDemo(),
+        // "form": (BuildContext context) => CustomForm(),
+        // "image": (BuildContext context) => ImageDemo(),
+        // "navigation_widget": (BuildContext context) => TopNavigationView(),
+        // "shared_prefs": (BuildContext context) => SharedPreferencesDemo(),
+        // "list": (BuildContext context) => ListDemo(),
+        // "refresh_list": (BuildContext context) => RefreshList(),
+        "button_collection": (BuildContext context) => ButtonCollection(),
       },
     );
   }
@@ -99,17 +100,20 @@ class _RouterNavigatorState extends State<RouterNavigator> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Center(
       child: Column(children: <Widget>[
+        Container(
+          padding: EdgeInsets.all(10),
+        ),
         // 通过点击跳转或是导航
-        SwitchListTile(
-            title: Text('${routeByName ? '' : '不'}通过路由名跳转'),
-            value: routeByName,
-            onChanged: (bool value) {
-              setState(() {
-                routeByName = value;
-              });
-            }),
+        // SwitchListTile(
+        //     title: Text('${routeByName ? '' : '不'}通过路由名跳转'),
+        //     value: routeByName,
+        //     onChanged: (bool value) {
+        //       setState(() {
+        //         routeByName = value;
+        //       });
+        //     }),
         // _item("Less Widget", StatelessGroup(), "stateless"),
         // _item("Ful Widget", StatefulGroup(), "stateful"),
         // _item("Layout Widget", Layout(), "layout"),
@@ -131,17 +135,14 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         // _item("Network Demo", NetworkDemo(), "network_demo"),
         // _item("Form Demo", CustomForm(), "form"),
         // _item("Image Demo", ImageDemo(), "image"),
-        // _item("Navigation Demo", TopNavigationView(), "navigation_widget"),
-        // _item("Navigation Demo", BotNavigationView(), "navigation_widget"),
-        // _item("Navigation Demo", SideNavigationView(), "navigation_widget"),
+        // _item("Top Navigation Demo", TopNavigationView(), "navigation_widget"),
+        // _item("Bot Navigation Demo", BotNavigationView(), "navigation_widget"),
+        // _item("Side Navigation Demo", SideNavigationView(), "navigation_widget"),
         // _item("Shared_Pref Demo", SharedPreferencesDemo(), "shared_prefs"),
         // _item("List Demo", ListDemo(), "list"),
-        _item("Refresh List Demo", RefreshList(), "refresh_list"),
-
-        Image(
-            width: 100,
-            height: 100,
-            image: AssetImage("./assets/images/48507806.png"))
+        // _item("Refresh List Demo", RefreshList(), "refresh_list"),
+        _item("Button Widget Collection", ButtonCollection(),
+            "button_collection"),
       ]),
     );
   }
