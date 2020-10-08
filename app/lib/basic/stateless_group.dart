@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "components/BackBtn.dart";
+import "../components/BackBtn.dart";
 
 class StatelessGroup extends StatelessWidget {
   @override

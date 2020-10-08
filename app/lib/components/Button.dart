@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import "../../utils/utils.dart";
+import "../utils/utils.dart";
 
 class ButtonCollection extends StatelessWidget {
   const ButtonCollection({Key key}) : super(key: key);

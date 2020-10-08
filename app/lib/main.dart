@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
-import "stateless_group.dart";
-import "sateful_group.dart";
+import "./basic/stateless_group.dart";
+import "./basic/sateful_group.dart";
 import "layout/layout.dart";
-import "plugin.dart";
-import "gesture.dart";
-import "launcher.dart";
-import "life_cycle.dart";
-import "app_flutter.dart";
+import "./basic/plugin.dart";
+import "./common/gesture.dart";
+import "./common/launcher.dart";
+import "./common/life_cycle.dart";
+import "./common/app_flutter.dart";
 import "app/camera.dart";
-import "route-param-receiver.dart";
-import "data-return-screen.dart";
-import "data-send-screen.dart";
+import "./router/route-param-receiver.dart";
+import "./router/data-return-screen.dart";
+import "./router/data-send-screen.dart";
 import "network/network.dart";
 import 'app/data-persistence.dart';
-import "form.dart";
-import "image.dart";
-import "navigation_widget.dart";
+import "./components/Form.dart";
+import "./components/Image.dart";
+import "./navigator/navigation_widget.dart";
 import "app/shared_prefer.dart";
 import "list/list.dart";
 import "list/list_refresh.dart";
-import "package:flutter_app/components/Button/Button.dart";
+import "./components/Button.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -86,6 +86,8 @@ class _DynamicThemeState extends State<DynamicTheme> {
         // "refresh_list": (BuildContext context) => RefreshList(),
         "button_collection": (BuildContext context) => ButtonCollection(),
       },
+      onUnknownRoute: (RouteSettings settings) =>
+          MaterialPageRoute(builder: (BuildContext context) => Text("")),
     );
   }
 }
@@ -155,7 +157,10 @@ class _RouterNavigatorState extends State<RouterNavigator> {
                 Navigator.pushNamed(context, route, arguments: args);
               } else {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => page));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => page,
+                        settings: RouteSettings(arguments: args)));
               }
             },
             child: Text(title)));
