@@ -31,21 +31,27 @@ class _ImageDemoState extends State<ImageDemo> {
     return Center(
       child: Column(
         children: <Widget>[
+          Image.asset("./assets/images/48507806.png", width: 100, height: 100),
+
           Image(
               width: 100,
               height: 100,
+              // 或者是Image.network, 都可~
               image: NetworkImage(
                   "https://linbudu-img-store.oss-cn-shenzhen.aliyuncs.com/img/48507806.jfif")),
 
-          // 牛批啊
+          // 简易的加载效果
           Stack(
             children: <Widget>[
-              Center(child: CircularProgressIndicator()),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: Center(child: CircularProgressIndicator()),
+              ),
               Center(
                 child: FadeInImage.memoryNetwork(
                     placeholder: kTransparentImage,
-                    width: 100,
-                    height: 100,
+                    width: 120,
+                    height: 120,
                     image:
                         "https://linbudu-img-store.oss-cn-shenzhen.aliyuncs.com/img/48507806.jfif"),
               ),

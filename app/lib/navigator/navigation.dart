@@ -25,6 +25,7 @@ class TopNavigationView extends StatelessWidget {
     return MaterialApp(
         home: DefaultTabController(
             length: choices.length,
+            initialIndex: 0,
             child: Scaffold(
                 appBar: AppBar(
                     title: const Text("Tabbed AppBar"),
@@ -79,7 +80,8 @@ class _BotNavigationViewState extends State<BotNavigationView>
   final Color _activeColor = Colors.blue;
   int _idx = 0;
 
-  PageController _controller = PageController(initialPage: 0);
+  PageController _controller =
+      PageController(initialPage: 0, keepPage: true, viewportFraction: 1.0);
 
   @override
   void dispose() {
@@ -125,51 +127,60 @@ class _BotNavigationViewState extends State<BotNavigationView>
   }
 
   BottomNavigationBarItem _buildItem(
-      IconData defaultIcon, String title, int idx,
-      {IconData activeIcon}) {
-    IconData defaultIcon;
-    bool isSelected = _idx == idx;
-
+    IconData defaultIcon,
+    String title,
+    int idx,
+  ) {
     return BottomNavigationBarItem(
-      icon: Icon(Icons.home,
-          color: _defaultColor, size: isSelected ? 26.0 : 38.0),
-      activeIcon: Icon(Icons.search, color: _activeColor),
-      title: Text(isSelected ? title : "",
-          style: TextStyle(color: !isSelected ? _defaultColor : _activeColor)),
-    );
+        icon: Icon(defaultIcon, color: _defaultColor, size: 28.0),
+        activeIcon: Icon(defaultIcon, color: _activeColor),
+        label: title ?? "");
   }
 }
 
-class SideNavigationView extends StatelessWidget {
-  const SideNavigationView({Key key}) : super(key: key);
+class SideNavigationView extends StatefulWidget {
+  SideNavigationView({Key key}) : super(key: key);
+
+  @override
+  _SideNavigationViewState createState() => _SideNavigationViewState();
+}
+
+class _SideNavigationViewState extends State<SideNavigationView> {
+  String _curr = "1";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Side Navigation")),
-      body: Center(child: Text("Side Navigation")),
+      body: Center(child: Text("Current Chosed $_curr")),
       drawer: Drawer(
           child: ListView(padding: EdgeInsets.zero, children: <Widget>[
         DrawerHeader(
-            child: Text("Drawer Header"),
+            duration: const Duration(milliseconds: 300),
+            child: const Text(
+              "Side Menu",
+              style: TextStyle(color: Colors.white, fontSize: 36),
+            ),
             decoration: BoxDecoration(
               color: Colors.blue,
             )),
         ListTile(
+          leading: Icon(Icons.file_download),
           title: Text('Item 1'),
           onTap: () {
-            // Update the state of the app
-            // ...
-            // Then close the drawer
+            setState(() {
+              _curr = "1";
+            });
             Navigator.pop(context);
           },
         ),
         ListTile(
+          leading: Icon(Icons.file_upload),
           title: Text('Item 2'),
           onTap: () {
-            // Update the state of the app
-            // ...
-            // Then close the drawer
+            setState(() {
+              _curr = "2";
+            });
             Navigator.pop(context);
           },
         ),

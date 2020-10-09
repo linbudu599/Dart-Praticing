@@ -15,7 +15,7 @@ import "network/network.dart";
 import 'app/data-persistence.dart';
 import "./components/Form.dart";
 import "./components/Image.dart";
-import "./navigator/navigation_widget.dart";
+import "./navigator/navigation.dart";
 import "app/shared_prefer.dart";
 import "list/list.dart";
 import "list/list_refresh.dart";
@@ -79,8 +79,10 @@ class _DynamicThemeState extends State<DynamicTheme> {
         // "data_send_screen": (BuildContext context) => DataSend2NewScreen(),
         // "network_demo": (BuildContext context) => NetworkDemo(),
         // "form": (BuildContext context) => CustomForm(),
-        // "image": (BuildContext context) => ImageDemo(),
-        // "navigation_widget": (BuildContext context) => TopNavigationView(),
+        "image": (BuildContext context) => ImageDemo(),
+        "top_navigation": (BuildContext context) => TopNavigationView(),
+        "bot_navigation": (BuildContext context) => BotNavigationView(),
+        "side_navigation": (BuildContext context) => SideNavigationView(),
         // "shared_prefs": (BuildContext context) => SharedPreferencesDemo(),
         // "list": (BuildContext context) => ListDemo(),
         // "refresh_list": (BuildContext context) => RefreshList(),
@@ -136,10 +138,10 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         //     "data_send_screen"),
         // _item("Network Demo", NetworkDemo(), "network_demo"),
         // _item("Form Demo", CustomForm(), "form"),
-        // _item("Image Demo", ImageDemo(), "image"),
-        // _item("Top Navigation Demo", TopNavigationView(), "navigation_widget"),
-        // _item("Bot Navigation Demo", BotNavigationView(), "navigation_widget"),
-        // _item("Side Navigation Demo", SideNavigationView(), "navigation_widget"),
+        _item("Image Demo", ImageDemo(), "image"),
+        _item("Top Navigation Demo", TopNavigationView(), "top_navigation"),
+        _item("Bot Navigation Demo", BotNavigationView(), "bot_navigation"),
+        _item("Side Navigation Demo", SideNavigationView(), "side_navigation"),
         // _item("Shared_Pref Demo", SharedPreferencesDemo(), "shared_prefs"),
         // _item("List Demo", ListDemo(), "list"),
         // _item("Refresh List Demo", RefreshList(), "refresh_list"),
