@@ -5,8 +5,8 @@ import "layout/layout.dart";
 import "./basic/plugin.dart";
 import "./common/gesture.dart";
 import "./common/launcher.dart";
-import "./common/life_cycle.dart";
-import "./common/app_flutter.dart";
+import "./common/lifecycle.dart";
+import "./common/app_lifecycle.dart";
 import "app/camera.dart";
 import "./router/route-param-receiver.dart";
 import "./router/data-return-screen.dart";
@@ -48,21 +48,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
       ),
       home: Scaffold(
           appBar: AppBar(title: Text("芜湖!")),
-          body:
-              // RaisedButton(
-              //     child: Text(
-              //       "toggle to ${bright == Brightness.light ? 'night' : 'day'} mode",
-              //       style: TextStyle(fontFamily: "FiraCode"),
-              //     ),
-              //     onPressed: () {
-              //       setState(() {
-              //         bright = bright == Brightness.light
-              //             ? Brightness.dark
-              //             : Brightness.light;
-              //       });
-              //     }),
-
-              SingleChildScrollView(child: RouterNavigator())),
+          body: SingleChildScrollView(child: RouterNavigator())),
       routes: <String, WidgetBuilder>{
         // "stateless": (BuildContext context) => StatelessGroup(),
         // "stateful": (BuildContext context) => StatefulGroup(),

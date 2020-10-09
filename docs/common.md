@@ -13,3 +13,20 @@
 ## keep-alive
 
 ## 搜索栏
+
+## 夜间模式
+
+```dart
+                RaisedButton(
+                  child: Text(
+                    "toggle to ${bright == Brightness.light ? 'night' : 'day'} mode",
+                    style: TextStyle(fontFamily: "FiraCode"),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      bright = bright == Brightness.light
+                          ? Brightness.dark
+                          : Brightness.light;
+                    });
+                  }),
+```
