@@ -20,6 +20,7 @@ import "app/shared_prefer.dart";
 import "list/list.dart";
 import "list/list_refresh.dart";
 import "./components/Button.dart";
+import "./container/container.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -73,6 +74,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
         // "list": (BuildContext context) => ListDemo(),
         // "refresh_list": (BuildContext context) => RefreshList(),
         "button_collection": (BuildContext context) => ButtonCollection(),
+        "container": (BuildContext context) => ContainerCollection(),
       },
       onUnknownRoute: (RouteSettings settings) =>
           MaterialPageRoute(builder: (BuildContext context) => Text("")),
@@ -133,6 +135,7 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         // _item("Refresh List Demo", RefreshList(), "refresh_list"),
         _item("Button Widget Collection", ButtonCollection(),
             "button_collection"),
+        _item("Container", ContainerCollection(), "container")
       ]),
     );
   }
