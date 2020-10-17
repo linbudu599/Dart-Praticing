@@ -21,6 +21,8 @@ import "list/list.dart";
 import "list/list_refresh.dart";
 import "./components/Button.dart";
 import "./container/container.dart";
+import "./common/progressIndicator.dart";
+import "./common/dialog.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -75,6 +77,8 @@ class _DynamicThemeState extends State<DynamicTheme> {
         // "refresh_list": (BuildContext context) => RefreshList(),
         "button_collection": (BuildContext context) => ButtonCollection(),
         "container": (BuildContext context) => ContainerCollection(),
+        "progress": (BuildContext context) => ProgressIndicatorDemo(),
+        "dialog": (BuildContext context) => DialogState(),
       },
       onUnknownRoute: (RouteSettings settings) =>
           MaterialPageRoute(builder: (BuildContext context) => Text("")),
@@ -135,7 +139,9 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         // _item("Refresh List Demo", RefreshList(), "refresh_list"),
         _item("Button Widget Collection", ButtonCollection(),
             "button_collection"),
-        _item("Container", ContainerCollection(), "container")
+        _item("Container", ContainerCollection(), "container"),
+        _item("Progress", ProgressIndicatorDemo(), "progress"),
+        _item("Dialog", DialogState(), "dialog"),
       ]),
     );
   }
