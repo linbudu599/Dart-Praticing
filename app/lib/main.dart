@@ -23,6 +23,7 @@ import "./components/Button.dart";
 import "./container/container.dart";
 import "./common/progressIndicator.dart";
 import "./common/dialog.dart";
+import "./event/event.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -79,6 +80,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
         "container": (BuildContext context) => ContainerCollection(),
         "progress": (BuildContext context) => ProgressIndicatorDemo(),
         "dialog": (BuildContext context) => DialogState(),
+        "event": (BuildContext context) => EventDemo(),
       },
       onUnknownRoute: (RouteSettings settings) =>
           MaterialPageRoute(builder: (BuildContext context) => Text("")),
@@ -142,6 +144,7 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         _item("Container", ContainerCollection(), "container"),
         _item("Progress", ProgressIndicatorDemo(), "progress"),
         _item("Dialog", DialogState(), "dialog"),
+        _item("Event", EventDemo(), "event")
       ]),
     );
   }
