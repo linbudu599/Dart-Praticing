@@ -86,7 +86,7 @@ class NotificationRouteState extends State<NotificationRoute> {
   String _msg = "";
   @override
   Widget build(BuildContext context) {
-    //监听通知
+    // 监听自定义的通知
     return NotificationListener<MyNotification>(
       onNotification: (notification) {
         setState(() {
@@ -102,6 +102,8 @@ class NotificationRouteState extends State<NotificationRoute> {
             // onPressed: () => MyNotification("Hi").dispatch(context),
             // child: Text("Send Notification"),
             // ),
+            // 需要使用Builder组件包裹 才能获得按钮位置的上下文
+            // 直接使用的话context是根context 但NL监听的是子树
             Builder(
               builder: (context) {
                 return RaisedButton(
