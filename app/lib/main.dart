@@ -24,6 +24,7 @@ import "./container/container.dart";
 import "./common/progressIndicator.dart";
 import "./common/dialog.dart";
 import "./event/event.dart";
+import "./animation/animation.dart";
 
 void main() {
   // runApp(StatelessWidgetGroup());
@@ -81,6 +82,7 @@ class _DynamicThemeState extends State<DynamicTheme> {
         "progress": (BuildContext context) => ProgressIndicatorDemo(),
         "dialog": (BuildContext context) => DialogState(),
         "event": (BuildContext context) => EventDemo(),
+        "animation": (BuildContext context) => AnimationDemo(),
       },
       onUnknownRoute: (RouteSettings settings) =>
           MaterialPageRoute(builder: (BuildContext context) => Text("")),
@@ -132,19 +134,20 @@ class _RouterNavigatorState extends State<RouterNavigator> {
         //     "data_send_screen"),
         // _item("Network Demo", NetworkDemo(), "network_demo"),
         // _item("Form Demo", CustomForm(), "form"),
-        _item("Image Demo", ImageDemo(), "image"),
-        _item("Top Navigation Demo", TopNavigationView(), "top_navigation"),
-        _item("Bot Navigation Demo", BotNavigationView(), "bot_navigation"),
-        _item("Side Navigation Demo", SideNavigationView(), "side_navigation"),
+        // _item("Image Demo", ImageDemo(), "image"),
+        // _item("Top Navigation Demo", TopNavigationView(), "top_navigation"),
+        // _item("Bot Navigation Demo", BotNavigationView(), "bot_navigation"),
+        // _item("Side Navigation Demo", SideNavigationView(), "side_navigation"),
         // _item("Shared_Pref Demo", SharedPreferencesDemo(), "shared_prefs"),
         // _item("List Demo", ListDemo(), "list"),
         // _item("Refresh List Demo", RefreshList(), "refresh_list"),
-        _item("Button Widget Collection", ButtonCollection(),
-            "button_collection"),
-        _item("Container", ContainerCollection(), "container"),
-        _item("Progress", ProgressIndicatorDemo(), "progress"),
-        _item("Dialog", DialogState(), "dialog"),
-        _item("Event", EventDemo(), "event")
+        // _item("Button Widget Collection", ButtonCollection(),
+        //     "button_collection"),
+        // _item("Container", ContainerCollection(), "container"),
+        // _item("Progress", ProgressIndicatorDemo(), "progress"),
+        // _item("Dialog", DialogState(), "dialog"),
+        // _item("Event", EventDemo(), "event"),
+        _item("Animation", AnimationDemo(), "animation")
       ]),
     );
   }
