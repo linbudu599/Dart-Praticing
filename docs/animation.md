@@ -141,3 +141,150 @@ final Animation curve =
     new CurvedAnimation(parent: controller, curve: Curves.easeOut);
 Animation<int> alpha = new IntTween(begin: 0, end: 255).animate(curve);
 ```
+
+## 路由动画
+
+MaterialPageRoute会自动使用平台风格的路由切换动画, 如IOS左右滑动, 安卓上下滑动
+
+在安卓上使用左右:
+
+```dart
+ Navigator.push(context, CupertinoPageRoute(  
+   builder: (context)=>PageB(),
+ ));
+```
+
+路由切换动画:
+
+```dart
+Navigator.push(
+  context,
+  PageRouteBuilder(
+    transitionDuration: Duration(milliseconds: 500), //动画时间为500毫秒
+    pageBuilder: (BuildContext context, Animation animation,
+        Animation secondaryAnimation) {
+      return new FadeTransition(
+        //使用渐隐渐入过渡,
+        opacity: animation,
+        child: PageB(), //路由B
+      );
+    },
+  ),
+);
+```
+
+MaterialPageRoute、CupertinoPageRoute，PageRouteBuilder都继承自PageRoute类，而PageRouteBuilder其实只是PageRoute的一个包装
+
+直接继承PageRoute来实现自定义路由:
+
+```dart
+class FadeRoute extends PageRoute {
+  FadeRoute({
+    @required this.builder,
+    this.transitionDuration = const Duration(milliseconds: 300),
+    this.opaque = true,
+    this.barrierDismissible = false,
+    this.barrierColor,
+    this.barrierLabel,
+    this.maintainState = true,
+  });
+
+  final WidgetBuilder builder;
+
+  @override
+  final Duration transitionDuration;
+
+  @override
+  final bool opaque;
+
+  @override
+  final bool barrierDismissible;
+
+  @override
+  final Color barrierColor;
+
+  @override
+  final String barrierLabel;
+
+  @override
+  final bool maintainState;
+
+  @override
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) => builder(context);
+
+  @override
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+     return FadeTransition( 
+       opacity: animation,
+       child: builder(context),
+     );
+  }
+}
+
+Navigator.push(context, FadeRoute(builder: (context) {
+  return PageB();
+}));
+```
+
+大部分场景下应使用PageRouteBuilder, 但有些场景下应用切换动画时需要读取当前路由属性, 如只在打开路由时应用动画:
+
+```dart
+@override
+Widget buildTransitions(BuildContext context, Animation<double> animation,
+    Animation<double> secondaryAnimation, Widget child) {
+ //当前路由被激活，是打开新路由
+ if(isActive) {
+   return FadeTransition(
+     opacity: animation,
+     child: builder(context),
+   );
+ }else{
+   //是返回，则不应用过渡动画
+   return Padding(padding: EdgeInsets.zero);
+ }
+}
+```
+
+## AnimatedSwitcher 原理
+
+在didUpdateWidget中判断新旧child是否发生变化
+对旧child执行反向退场 对新child执行正向入场
+
+```dart
+Widget _widget; //
+void didUpdateWidget(AnimatedSwitcher oldWidget) {
+  super.didUpdateWidget(oldWidget);
+  // 检查新旧child是否发生变化(key和类型同时相等则返回true，认为没变化)
+  if (Widget.canUpdate(widget.child, oldWidget.child)) {
+    // child没变化，...
+  } else {
+    //child发生了变化，构建一个Stack来分别给新旧child执行动画
+   _widget= Stack(
+      alignment: Alignment.center,
+      children:[
+        //旧child应用FadeTransition
+        FadeTransition(
+         opacity: _controllerOldAnimation,
+         child : oldWidget.child,
+        ),
+        //新child应用FadeTransition
+        FadeTransition(
+         opacity: _controllerNewAnimation,
+         child : widget.child,
+        ),
+      ]
+    );
+    // 给旧child执行反向退场动画
+    _controllerOldAnimation.reverse();
+    //给新child执行正向入场动画
+    _controllerNewAnimation.forward();
+  }
+}
+
+//build方法
+Widget build(BuildContext context){
+  return _widget;
+}
+```
